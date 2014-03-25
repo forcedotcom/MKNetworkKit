@@ -1783,7 +1783,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
   // Salesforce
   // {
   if (!notModified) {
-      DLog(@"State: %d", [[UIApplication sharedApplication] applicationState]);
+      DLog(@"State: %ld", [[UIApplication sharedApplication] applicationState]);
   }
   // }
 //    DLog(@"State: %d", [[UIApplication sharedApplication] applicationState]);
