@@ -1297,7 +1297,10 @@ OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,        // 5
           
           [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
         }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         else if(result == kSecTrustResultConfirm) {
+#pragma clang diagnostic pop
           
           if(self.shouldContinueWithInvalidCertificate) {
             
@@ -1350,7 +1353,10 @@ OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,        // 5
   // {
   self.response = (NSHTTPURLResponse*) response;
   const long long sz = [self contentLength];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
   NSUInteger size = sz < 0 ? 0 : sz;
+#pragma clang diagnostic pop
   // }
 //    NSUInteger size = [self.response expectedContentLength] < 0 ? 0 : [self.response expectedContentLength];
   
@@ -1499,7 +1505,7 @@ OSStatus extractIdentityAndTrust(CFDataRef inPKCS12Data,        // 5
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
-    return NO;
+    return nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten
